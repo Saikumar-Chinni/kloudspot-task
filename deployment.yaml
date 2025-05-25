@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kloudspot-deployment
+  namespace: kloudspot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kloudspot-app
+  template:
+    metadata:
+      labels:
+        app: kloudspot-app
+    spec:
+      containers:
+        - name: kloudspot-container
+          image: nginxdemos/hello
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "250Mi"
+              cpu: "200m"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: kloudspot-config-volume
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: kloudspot-config-volume
+          configMap:
+            name: kloudspot-configmap

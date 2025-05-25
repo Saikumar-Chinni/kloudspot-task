@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kloudspot-ingress
+  namespace: kloudspot
+spec:
+  tls:
+    - hosts:
+      - kloudspot.local
+      secretName: kloudspot-secret-tls
+  rules:
+  - host: kloudspot.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kloudspot-service
+            port:
+              number: 80
