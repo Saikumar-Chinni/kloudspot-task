@@ -104,4 +104,9 @@ kubectl describe pod <pod-name> -n kloudspot
 - Health probes for liveness and readiness
 - Optional TLS setup with Ingress
 
+#### URL for the task: 
+```bash
+https://drive.google.com/file/d/1ZXE9GVQUd-5-vitHX1NxOYIXpXRdRm9f/view
+```
+
 This provides a full Kubernetes setup to deploy and access an NGINX-based demo app.
