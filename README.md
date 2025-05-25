@@ -104,7 +104,7 @@ kubectl describe pod <pod-name> -n kloudspot
 - Health probes for liveness and readiness
 - Optional TLS setup with Ingress
 
-#### URL for the task: 
+#### URL for the task video: 
 ```bash
 https://drive.google.com/file/d/1ZXE9GVQUd-5-vitHX1NxOYIXpXRdRm9f/view
 ```
